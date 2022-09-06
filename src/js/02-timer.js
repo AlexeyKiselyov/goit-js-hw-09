@@ -34,10 +34,14 @@ const options = {
 const fp = flatpickr('#datetime-picker', options);
 
 function onStartBtn() {
-  setInterval(() => {
-    let time = chosenDate.getTime() - Date.now();
+  startBtn.disabled = true;
+  const intervalId = setInterval(() => {
+    const time = chosenDate.getTime() - Date.now();
     const convertTime = convertMs(time);
     timeToInterface(convertTime);
+    if (time < 1000) {
+      clearInterval(intervalId);
+    }
   }, 1000);
 }
 

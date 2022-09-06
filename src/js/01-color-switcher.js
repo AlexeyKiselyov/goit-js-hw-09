@@ -17,11 +17,13 @@ function onStartBtn() {
   }, 1000);
 
   startBtn.disabled = true;
+  stopBtn.disabled = false;
 }
 
 function onStopBtn() {
   clearInterval(interval);
   startBtn.disabled = false;
+  stopBtn.disabled = true;
 }
 
 // --------------RandomHexColor------------------
