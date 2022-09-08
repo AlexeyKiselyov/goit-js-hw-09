@@ -6,11 +6,6 @@ import Notiflix from 'notiflix';
 const startBtn = document.querySelector('[data-start]');
 startBtn.addEventListener('click', onStartBtn);
 
-const daysInput = document.querySelector('[data-days]');
-const hoursInput = document.querySelector('[data-hours]');
-const minutesInput = document.querySelector('[data-minutes]');
-const secondsInput = document.querySelector('[data-seconds]');
-
 startBtn.disabled = true;
 
 let chosenDate = null;
@@ -46,11 +41,13 @@ function onStartBtn() {
 }
 
 function timeToInterface(convertTime) {
-  const { days, hours, minutes, seconds } = convertTime;
-  daysInput.textContent = days;
-  hoursInput.textContent = hours;
-  minutesInput.textContent = minutes;
-  secondsInput.textContent = seconds;
+  for (const key in convertTime) {
+    timeEnterToElement(key, convertTime);
+  }
+}
+
+function timeEnterToElement(key, convertTime) {
+  document.querySelector(`[data-${key}]`).textContent = convertTime[key];
 }
 
 function convertMs(ms) {
